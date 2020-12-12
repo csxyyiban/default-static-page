@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .error-page {
+            position: absolute;
+            top: 10%;
+            left: 17%;
+            right: 17%;
+            bottom: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .error-page .content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .container h2 {
+            font-size: 40px;
+            line-height: 1em;
+            /* position: relative; */
+        }
+
+        .container {
+            background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+            /* background: linear-gradient(#FAB6AD, #FED1B9); */
+            text-align: center;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        .content h1 {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            color: #0d0d0d;
+            max-width: 600px;
+        }
+
+        .content h4 {
+            color: rgba(34, 31, 31, 0.801);
+        }
+
+        @media screen and (min-width: 600px) {
+            .error-page {
+                box-shadow: inset 0px 0px 20px 0px rgba(180, 175, 175, 0.5);
+            }
+
+            h1 {
+                font-size: 100px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 80px;
+            }
+        }
+        .to-yiban {
+            margin-top: 50px;
+        }
+        .to-yiban a {
+            color: #6f86d6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-page">
+        <div class="content">
+            <div class="container">
+                <h1>404</h1>
+            </div>
+            <h2 data-text="404">页面找不到了</h2>
+            <h4 data-text="Oops! Page not found">Oops! Page not found.</h4>
+            <div class="to-yiban">返回应用广场：<a href="http://app.yiban.cn/">http://app.yiban.cn/</a></div>
+        </div>
+    </div>
+</body>
+
+</html>
