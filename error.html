@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            letter-spacing: 3px;
+            padding-top: 5px;
+            color: white;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+
+        .two {
+            right: 40px;
+            opacity: .5;
+        }
+
+        #error-box {
+            position: relative;
+            margin: 50px auto;
+            padding: 50px 0 30px;
+            width: 100%;
+            min-width: 250px;
+            max-width: 900px;
+            background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+            border-radius: 20px;
+            box-shadow: 5px 5px 20px rgba(#CBCDD3, 10%);
+        }
+
+        .face {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            border: 1px solid #777777;
+            top: 21%;
+            left: 37.5%;
+            z-index: 2;
+            animation: roll 3s ease-in-out infinite;
+        }
+
+        .eye {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #777777;
+            border-radius: 50%;
+            top: 40%;
+            left: 20%;
+        }
+
+        .right {
+            left: 68%;
+        }
+
+        .mouth {
+            position: absolute;
+            top: 43%;
+            left: 41%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .sad {
+            top: 49%;
+            border: 2px solid;
+            border-color: #777777 transparent transparent #777777;
+            transform: rotate(45deg);
+        }
+
+        .shadow {
+            position: relative;
+            width: 60px;
+            height: 8px;
+            opacity: .5;
+            background: #777777;
+            left: 40%;
+            top: 43%;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .move {
+            animation: move 3s ease-in-out infinite;
+        }
+
+        .message {
+            position: relative;
+            width: 100%;
+            text-align: center;
+            height: 40%;
+        }
+
+        #error {
+            text-align: left;
+            width: 80%;
+            margin: 10px auto 30px;
+            color: #545454;
+        }
+
+        .contact {
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 5px auto;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        @keyframes move {
+            0% {
+                left: 30%;
+            }
+
+            50% {
+                left: 70%;
+            }
+
+            100% {
+                left: 30%;
+            }
+        }
+
+        @keyframes roll {
+            0% {
+                transform: rotate(0deg);
+                left: 30%;
+            }
+
+            50% {
+                left: 70%;
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+                left: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="error-box">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message">
+            <h1 class="alert">出错了!</h1>
+            <div id="error">
+                <h3>错误信息：</h3>
+                <p id="info"></p>
+            </div>
+            <div class="contact">
+                <p>若对本错误有疑问，请联系工作人员或向易班班长反馈</p>
+                <p>korilin@foxmail.com</p>
+                <p>微信&QQ：1281359826</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+    var messgae = getQueryVariable("message");
+    document.getElementById("info").innerText = decodeURI(messgae);
+
+</script>
+
+</html>
