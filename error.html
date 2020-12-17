@@ -13,7 +13,7 @@
             padding-bottom: 5px;
             text-transform: uppercase;
         }
-
+        
         .dot {
             width: 8px;
             height: 8px;
@@ -24,13 +24,12 @@
             right: 20px;
             cursor: pointer;
         }
-
-
+        
         .two {
             right: 40px;
             opacity: .5;
         }
-
+        
         #error-box {
             position: relative;
             margin: 50px auto;
@@ -42,7 +41,7 @@
             border-radius: 20px;
             box-shadow: 5px 5px 20px rgba(#CBCDD3, 10%);
         }
-
+        
         .face {
             position: relative;
             width: 60px;
@@ -55,7 +54,7 @@
             z-index: 2;
             animation: roll 3s ease-in-out infinite;
         }
-
+        
         .eye {
             position: absolute;
             width: 5px;
@@ -65,11 +64,11 @@
             top: 40%;
             left: 20%;
         }
-
+        
         .right {
             left: 68%;
         }
-
+        
         .mouth {
             position: absolute;
             top: 43%;
@@ -78,14 +77,14 @@
             height: 7px;
             border-radius: 50%;
         }
-
+        
         .sad {
             top: 49%;
             border: 2px solid;
             border-color: #777777 transparent transparent #777777;
             transform: rotate(45deg);
         }
-
+        
         .shadow {
             position: relative;
             width: 60px;
@@ -97,62 +96,58 @@
             border-radius: 50%;
             z-index: 1;
         }
-
+        
         .move {
             animation: move 3s ease-in-out infinite;
         }
-
+        
         .message {
             position: relative;
             width: 100%;
             text-align: center;
             height: 40%;
         }
-
+        
         #error {
             text-align: left;
             width: 80%;
             margin: 10px auto 30px;
             color: #545454;
         }
-
+        
         .contact {
             position: relative;
             width: 100%;
             text-align: center;
         }
-
+        
         .contact p {
             margin: 5px auto;
             color: #fff;
             font-size: 14px;
         }
-
+        
         @keyframes move {
             0% {
                 left: 30%;
             }
-
             50% {
                 left: 70%;
             }
-
             100% {
                 left: 30%;
             }
         }
-
+        
         @keyframes roll {
             0% {
                 transform: rotate(0deg);
                 left: 30%;
             }
-
             50% {
                 left: 70%;
                 transform: rotate(180deg);
             }
-
             100% {
                 transform: rotate(0deg);
                 left: 30%;
@@ -187,19 +182,32 @@
 </body>
 
 <script>
-
     function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
         var vars = query.split("&");
         for (var i = 0; i < vars.length; i++) {
             var pair = vars[i].split("=");
-            if (pair[0] == variable) { return pair[1]; }
+            if (pair[0] == variable) {
+                return pair[1];
+            }
         }
-        return "你确定有传错误信息给我？";
+        return null;
     }
     var messgae = getQueryVariable("message");
-    document.getElementById("info").innerText = decodeURI(messgae);
-
+    var code = getQueryVariable("code")
+    if (messgae != null)
+        document.getElementById("info").innerText = decodeURI(messgae);
+    else if (code != null) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://oauth.csxy-yiban.cn/errorInfo?code=' + code, true);
+        xhr.send();
+        xhr.onreadystatechange = function(e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById("info").innerText = decodeURI(xhr.responseText);
+            }
+        };
+    } else
+        document.getElementById("info").innerText = decodeURI("你确定有传错误信息给我吗？");
 </script>
 
 </html>
