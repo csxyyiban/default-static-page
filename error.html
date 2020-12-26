@@ -198,6 +198,7 @@
     if (messgae != null)
         document.getElementById("info").innerText = decodeURI(messgae);
     else if (code != null) {
+        /*
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://oauth.csxy-yiban.cn/errorInfo?code=' + code, true);
         xhr.send();
@@ -206,6 +207,8 @@
                 document.getElementById("info").innerText = decodeURI(xhr.responseText);
             }
         };
+        */
+        document.getElementById("info").innerText = decodeURI("错误码：#" + code);
     } else
         document.getElementById("info").innerText = decodeURI("你确定有传错误信息给我吗？");
 </script>
